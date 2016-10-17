@@ -53,7 +53,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		
 		record.setBeerName(review.getBeerName());
 		record.setBreweryName(review.getBreweryName());
-		record.setReviewUserId(review.getReviewUserId());
+		record.setUserName(review.getUserName());
 		record.setBeerRating(review.getBeerRating());
 		record.setHopsRating(review.getHopsRating());
 		record.setMaltRating(review.getMaltRating());

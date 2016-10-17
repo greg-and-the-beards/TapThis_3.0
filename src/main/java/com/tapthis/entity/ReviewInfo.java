@@ -22,8 +22,8 @@ public class ReviewInfo implements Serializable {
 	@Column(name="brewery_name")
 	private String breweryName;
 
-	@Column(name="user_id")
-	private int reviewUserId;
+	@Column(name="user_name")
+	private String userName;
 	
 	@Column(name="beer_rating_overall_quality")
 	private int beerRating;
@@ -62,14 +62,6 @@ public class ReviewInfo implements Serializable {
 
 	public void setBreweryName(String breweryName) {
 		this.breweryName = breweryName;
-	}
-
-	public int getReviewUserId() {
-		return reviewUserId;
-	}
-
-	public void setReviewUserId(int reviewUserId) {
-		this.reviewUserId = reviewUserId;
 	}
 
 	public int getBeerRating() {
@@ -111,5 +103,15 @@ public class ReviewInfo implements Serializable {
 	public void setBeerInfo(String beerInfo) {
 		this.beerInfo = beerInfo;
 	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	
 	
 }

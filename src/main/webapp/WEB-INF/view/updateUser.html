@@ -65,7 +65,7 @@
 					<h2>Update Profile</h2>
 					<h2 th:text="${session.user.userName}"></h2>
 				 	<form class="form-horizontal" id="updateUserForm">
-						<input type="text" name="userId" id="userId" th:value="${session.user.userId}">
+						<input type="hidden" name="userId" id="userId" th:value="${session.user.userId}">
 						<div class="form-group">
 							<label for="userName" class="col-sm-2 control-label">Username</label>
 							<div class="col-sm-10">
@@ -106,7 +106,7 @@
 						<div class="form-group">
 							<label for="password" class="col-sm-2 control-label">Password</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="password"
+								<input type="password" class="form-control" id="password"
 									name="password" aria-describedby="helpBlock" required th:value="${session.user.password}">
 								<span id="helpBlock" class="help-block">Password should
 									be at least 8 characters, 1 upppercase, 1 lowercase, 1 special
@@ -116,7 +116,7 @@
 						<div class="form-group">
                             <label for="password_verify" class="col-sm-2 control-label">Password Verify</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="password_verify" name="password_verify" aria-describedby="helpBlock" required th:value="${session.user.password}">
+                                <input type="password" class="form-control" id="password_verify" name="password_verify" aria-describedby="helpBlock" required th:value="${session.user.password}">
                                 <span id="helpBlock" class="help-block">Passwords must match</span>
                             </div>
                         </div>

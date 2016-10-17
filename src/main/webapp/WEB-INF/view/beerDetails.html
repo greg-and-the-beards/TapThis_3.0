@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="css/business-casual.css" rel="stylesheet">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+
+					<li><a data-toggle="dropdown" href="#"><span
+							class="glyphicon glyphicon-menu-hamburger"></span> Beer Reviews</a>
+						<ul class="dropdown-menu">
+							<li><a href="readTable.jsp"><span
+									class="glyphicon glyphicon-map-marker"></span> View Recent List</a></li>
+							<li><a href="addToTable.html"><span
+									class="glyphicon glyphicon-pushpin"></span> Add Beer Review</a></li>
+							<li><a href="updateToTable.jsp"><span
+									class="glyphicon glyphicon-ok-circle"></span> Update Beer
+									Review</a></li>
+							<li><a href="deleteToTable.jsp"><span
+									class="glyphicon glyphicon-trash"></span> Remove Beer Review</a></li>
+						</ul></li>
+					<li><a href="index.html"><span
+							class="glyphicon glyphicon-tree-conifer"></span>Home</a></li>
+					<li>
+						<div id="logodiv">
+							<img src="img/TapThisBanner.png" style="width: 200px;">
+						</div>
+					</li>
+					<li><a href="images/ListOfParks.pdf"><span
+							class="glyphicon glyphicon-grain"></span>About</a></li>
+
+					<li><a
+						onclick="document.getElementById('id01').style.display='block'"
+						style="width: auto;"><span class="glyphicon glyphicon-fire"></span>Log-In</a></li>
+
+					<div id="id01" class="modal">
+
+						<form class="modal-content animate" action="action_page.php">
+							<div class="imgcontainer">
+								<span
+									onclick="document.getElementById('id01').style.display='none'"
+									class="close" title="Close Modal">&times;</span>
+							</div>
+
+							<div class="container">
+								<label style="padding-right: 138px;"><b>Username</b></label> <input
+									type="text" placeholder="Enter Username" name="userName"
+									required>
+								<hr>
+								<label style="padding-right: 150px;"><b>Password</b></label> <input
+									type="password" placeholder="Enter Password" name="password"
+									required>
+								<hr>
+								<label for="password"><b>Confirm password</b></label> <input
+									type="password" name="password" />
+								<hr>
+								<button type="submit">Login</button>
+								<!--       <input type="checkbox" checked="checked"> Remember me
+ -->
+							</div>
+
+							<div class="container" style="background-color: white">
+								<button style="color: red;" type="button"
+									onclick="document.getElementById('id01').style.display='none'"
+									class="cancelbtn">Cancel</button>
+								<!--       <span class="psw">Forgot <a href="#">password?</a></span>
+ -->
+							</div>
+						</form>
+					</div>
+
+					<script>
+						// Get the modal
+						var modal = document.getElementById('id01');
+
+						// When the user clicks anywhere outside of the modal, close it
+						window.onclick = function(event) {
+							if (event.target == modal) {
+								modal.style.display = "none";
+							}
+						}
+					</script>
+
+					</li>
+				</ul>
+
+				<form action="/APIResults" class="navbar-form" id="searchdiv"
+					role="search">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search Beer"
+							name="beerInfo">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+	<!-- holds beer info and & reviews -->
+	<div id="" class="row">
+
+
+		<!-- div for displaying reviews -->
+		<div id="revWrapper" class='col-md-6'
+			style="padding: 50px; border: 2px solid black;">
+			<h3 align="center">
+				Have you had this beer? Leave your review here!</b>
+				<div class="containe">
+					<div class="row">
+						<div class="box">
+							<div id="eachReview" th:each="review : ${reviews}">
+								<div>
+									<p id="thymeleafBS">Reviewer</p>
+									<p th:text="${review.reviewUserId}"></p>
+									<p id="thymeleafBS">Hops Rating</p>
+									<p th:text="${review.hopsRating}"></p>
+									<p id="thymeleafBS">Malt Rating</p>
+									<p th:text="${review.maltRating}"></p>
+									<p id="thymeleafBS">Overall Beer Rating</p>
+									<p th:text="${review.beerRating}"></p>
+									<p id="thymeleafBS">Reviewer's Comment</p>
+									<p th:text="${review.reviewComment}"></p>
+									<br />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+
+		<div id="infoReview" class='col-md-6'
+			style="padding: 25px; border: 2px solid black;">
+
+			<!-- div to display API data -->
+
+			<div id="wrapper"
+				style="padding: 25px; border: 2px solid black; background-color: orange">
+				<h3 align="center">Your Selected Beer</h3>
+
+				<!-- closing for beerInfo wrapper div -->
+			</div>
+
+			<div id="revForm"
+				style="padding: 25px; border: 2px solid black; background-color: orange">
+				<h3 align="center">Review This Beer</h3>
+				<form action="/beerDetails" method="POST" class="form-horizontal"
+					id="beerReviewForm">
+					<div class="form-group">
+						<label hidden for="reviewUserId" class="col-sm-2 control-label">User
+							ID</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="reviewUserId"
+								name="reviewUserId" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="beerName" class="col-sm-2 control-label">Beer</label>
+						<div class="col-sm-10">
+							<input readonly type="text" class="form-control" id="beerName"
+								name="beerName" placeholder="Beer" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="breweryName" class="col-sm-2 control-label">Brewery</label>
+						<div class="col-sm-10">
+							<input readonly type="text" class="form-control" id="breweryName"
+								name="breweryName" placeholder="Brewery" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label hidden for="beerInfo" class="col-sm-2 control-label">BeerInfo</label>
+						<div class="col-sm-10">
+							<input readonly type="text" class="form-control" id="beerInfo"
+								name="beerInfo" placeholder="BeerInfo" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="reviewComment" class="col-sm-2 control-label">Your
+							Review</label>
+						<div class="col-sm-10">
+							<textarea type="review" class="form-control" id="reviewComment"
+								name="reviewComment" placeholder="Your Review Here!" required
+								rows="6" cols="40" maxlength="256"></textarea>
+						</div>
+					</div>
+					<div>
+						<label for="hopsRating">Hop Strength</label> <select
+							name="hopsRating" id="hopsRating">
+							<option value="1">No Hoppiness</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">Extremely Hoppy</option>
+						</select>
+					</div>
+					<div>
+						<label for="maltRating">Maltiness</label> <select
+							name="maltRating" id="malt">
+							<option value="1">No Maltiness</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">Extremely Malty</option>
+						</select>
+					</div>
+					<div>
+						<label for="beerRating">Overall Beer Rating</label> <select
+							name="beerRating" id="beerRating">
+							<option value="1">Poor</option>
+							<option value="2">Fine</option>
+							<option value="3">Neutral</option>
+							<option value="4">Good</option>
+							<option value="5">Outstanding</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button id="newReview" type="submit" value="Submit"
+								class="btn btn-default">Submit Review</button>
+						</div>
+					</div>
+				</form>
+
+				<!-- closing div for revFrom -->
+			</div>
+			<!-- closing of div for beer info & reviews/form class="row"-->
+		</div>
+
+
+
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+		<script>
+			$(function() {
+
+				// retrieves params passed from APIResults page for selected beer from user
+				function $_GET(param) {
+					var vars = {};
+					window.location.href.replace(location.hash, '').replace(
+							/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+							function(m, key, value) { // callback
+								vars[key] = value !== undefined ? value : '';
+							});
+					if (param) {
+						return vars[param] ? vars[param] : null;
+					}
+					return vars;
+				}
+
+				// runs API call off of passed params from selection on APIResults page 
+				$
+						.get(
+								"https://api.untappd.com/v4/search/beer?q="
+										+ $_GET("beerInfo")
+										+ "&client_id=B2397B44662D900D4265BF03E035CE16D5CF4846&client_secret=2AE5A2667723D53FDDDCF2410EB5412F91FE433A",
+								function(data) {
+
+									//	console.log(JSON.stringify(data))
+
+									$
+											.each(
+													data.response.beers.items,
+													function(index, value) {
+
+														//	var beerImg = value.beer.beer_label
+														breweryLink = value.brewery.contact.url
+														beerName = value.beer.beer_name
+														breweryName = value.brewery.brewery_name
+														var beerInfo = breweryName
+																+ " "
+																+ beerName
+
+														$("#wrapper")
+																.append(
+																		"<div style='border:3px solid black' id='oneBeer'>");
+														$("#wrapper")
+																.append(
+																		"<ul align='center'>");
+														$("#wrapper")
+																.append(
+																		"<li align='center'>"
+																				+ '<b>'
+																				+ value.beer.beer_name
+																				+ '</b>'
+																				+ "</li>");
+														$("#wrapper")
+																.append(
+																		"<li align='center'>"
+																				+ '<a href= "' + breweryLink +'">'
+																				+ value.brewery.brewery_name
+																				+ '</a>'
+																				+ "</li>");
+														$("#wrapper")
+																.append(
+																		"<li align='center'>"
+																				+ '<img src=' + value.beer.beer_label + '>'
+																				+ "</li>");
+														$("#wrapper")
+																.append(
+																		"<li align='center'>"
+																				+ "<b>Abv : </b> "
+																				+ value.beer.beer_abv
+																				+ "</li>");
+														$("#wrapper")
+																.append(
+																		"<li align='center'>"
+																				+ "<b>Style : </b> "
+																				+ value.beer.beer_style
+																				+ "</li>");
+														$("#wrapper")
+																.append(
+																		"<li align='center'>"
+																				+ "<b>Beer Description:</b> "
+																				+ value.beer.beer_description
+																				+ "</li>");
+														$("#wrapper")
+																.append(
+																		"<li align='center'>"
+																				+ "<b>Brewing Location: </b>"
+																				+ value.brewery.location.brewery_city
+																				+ ", "
+																				+ value.brewery.location.brewery_state
+																				+ "</li>");
+														$("#wrapper").append(
+																"</ul><br>");
+														$("#wrapper").append(
+																"</div>");
+														$("#beerName")
+																.val(
+																		value.beer.beer_name);
+														$("#breweryName")
+																.val(
+																		value.brewery.brewery_name);
+														$("#beerInfo")
+																.val(
+																		value.brewery.brewery_name
+																				+ " "
+																				+ value.beer.beer_name)
+																.hide();
+
+														// hides the UID input field in the form. Will need to add to this function to populate this hidden field with data from mySQL table
+													/* 	$("#reviewUserId")
+																.hide(); */
+
+														// displays the first div generated from parsed API data
+														$.first("#oneBeer")
+																.display();
+
+													});
+								}, "json")
+
+			});
+		</script>
+</body>
+</html>

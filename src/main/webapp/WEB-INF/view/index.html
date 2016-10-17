@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+#searchdiv {
+	margin-top: 2em;
+	float: right;
+	padding: 5px 0 0 10px;
+}
+
+#searchdiv input {
+	height: 30px;
+	border: none;
+	padding: 5px 0 5px 10px;
+	border-radius: 5px;
+}
+
+span.psw {
+	float: right;
+	padding-top: 16px;
+}
+</style>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Tap This Home Page</title>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/business-casual.css" rel="stylesheet">
+<!-- Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
+	rel="stylesheet" type="text/css">
+</head>
+<body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+					<li><a data-toggle="dropdown" href="#"><span
+							class="glyphicon glyphicon-menu-hamburger"></span> Beer Reviews</a>
+						<ul class="dropdown-menu">
+							<li><a href="readTable.jsp"><span
+									class="glyphicon glyphicon-map-marker"></span> View Recent List</a></li>
+							<li><a href="addToTable.html"><span
+									class="glyphicon glyphicon-pushpin"></span> Add Beer Review</a></li>
+							<li><a href="updateToTable.jsp"><span
+									class="glyphicon glyphicon-ok-circle"></span> Update Beer
+									Review</a></li>
+							<li><a href="deleteToTable.jsp"><span
+									class="glyphicon glyphicon-trash"></span> Remove Beer Review</a></li>
+						</ul></li>
+					<li><a href="index.html"><span
+							class="glyphicon glyphicon-tree-conifer"></span>Home</a></li>
+					<li><a href="images/ListOfParks.pdf"><span
+							class="glyphicon glyphicon-grain"></span>About</a>
+					<li><a href="register.html"><span class="glyphicon glyphicon-ok"></span> Register</a>
+					<li><a
+						onclick="document.getElementById('id01').style.display='block'"
+						style="width: auto;"><span class="glyphicon glyphicon-fire"></span>Log-In</a>
+
+						<div id="id01" class="modal">
+
+							<form class="modal-content animate" action="/userlogin"
+								method="POST" id="loginform">
+								<div class="imgcontainer">
+									<span
+										onclick="document.getElementById('id01').style.display='none'"
+										class="close" title="Close Modal">&times;</span>
+								</div>
+
+								<div class="container">
+									<label style="padding-right: 138px;"><b>Username</b></label> <input
+										type="text" placeholder="Enter Username" name="userName"
+										required>
+									<hr>
+									<label style="padding-right: 150px;"><b>Password</b></label> <input
+										type="password" placeholder="Enter Password" name="password"
+										required>
+									<hr>
+									<label for="password"><b>Confirm password</b></label> <input
+										type="password" />
+									<hr>
+									<button id="login" type="button">Login</button>
+									<!--       <input type="checkbox" checked="checked"> Remember me
+ -->
+								</div>
+
+								<div class="container" style="background-color: white">
+									<button style="color: red;" type="button"
+										onclick="document.getElementById('id01').style.display='none'"
+										class="cancelbtn">Cancel</button>
+									<!--       <span class="psw">Forgot <a href="#">password?</a></span>
+ -->
+								</div>
+							</form>
+						</div> <script>
+							// Get the modal
+							var modal = document.getElementById('id01');
+
+							// When the user clicks anywhere outside of the modal, close it
+							window.onclick = function(event) {
+								if (event.target == modal) {
+									modal.style.display = "none";
+								}
+							}
+						</script></li>
+				</ul>
+
+				<form action="/APIResults" class="navbar-form" id="searchdiv"
+					role="search">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search Beer"
+							name="beerInfo">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+	<!--         <div style="text-shadow: 4px 4px #8c4805;" class="brand">Tap This</div> -->
+	<!--         <div  id="logodiv"><img src="img/TapThisBanner.png" style="margin: 0 auto; z-index: 3;"></div>
+ -->
+	<div class="container">
+		<div class="row">
+			<div class="box">
+				<div class="col-lg-12 text-center">
+					<div id="carousel-example-generic" class="carousel slide">
+						<!-- Indicators -->
+						<ol class="carousel-indicators hidden-xs">
+							<li data-target="#carousel-example-generic" data-slide-to="0"
+								class="active"></li>
+							<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+							<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+						</ol>
+						<!-- Wrapper for slides -->
+						<div class="carousel-inner">
+							<div class="item active">
+								<img class="img-responsive img-full"
+									src="img/beer_collection01.jpg" alt="">
+							</div>
+							<div class="item">
+								<img class="img-responsive img-full"
+									src="img/booze-map-hed-2013.jpg" alt="">
+							</div>
+							<div class="item">
+								<img class="img-responsive img-full"
+									src="img/beer_collection02.jpg" alt="">
+							</div>
+						</div>
+						<!-- Controls -->
+						<a class="left carousel-control" href="#carousel-example-generic"
+							data-slide="prev"> <span class="icon-prev"></span>
+						</a> <a class="right carousel-control"
+							href="#carousel-example-generic" data-slide="next"> <span
+							class="icon-next"></span>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="box">
+				<div class="col-lg-12">
+					<hr>
+					<h2 class="intro-text text-center">
+						A Little About<strong> Tap This </strong>
+					</h2>
+					<hr>
+					<img class="img-responsive img-border img-left"
+						src="img/keepcalm.jpg" alt="">
+					<hr class="visible-xs">
+					<p>Born from the minds of four overstressed software
+						development students, Tap This was a final project that could
+						easily make the days seem to slip by just a little easier.
+						Actually, that second part of the previous sentence is a lie. It's
+						been a huge pain in the ass and keeps us all awake at night. We
+						are in constant fear. TAP THIS</p>
+					</p>
+				</div>
+			</div>
+		</div>
+		<!--   <div class="row">
+                <div class="box">
+                    <div class="col-lg-12">
+                        <hr>
+                        <h2 class="intro-text text-center">Beautiful boxes
+                        <strong>to showcase your content</strong>
+                        </h2>
+                        <hr>
+                        <p>Use as many boxes as you like, and put anything you want in them! They are great for just about anything, the sky's the limit!</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                    </div>
+                </div>
+            </div> -->
+	</div>
+	<!-- /.container -->
+	<footer>
+		<!-- <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p>Copyright &copy; Your Website 2014</p>
+                    </div>
+                </div>
+            </div> -->
+		<!-- Team Section -->
+		<section id="team" class="bg-light-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<h3 class="section-subheading text-muted">Meet Greg and the
+							Beards</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="team-member">
+							<img src="img/greg.png" class="img-responsive img-circle" alt="">
+							<h4>Greg Morris</h4>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="team-member">
+							<img src="img/jake.png" class="img-responsive img-circle" alt="">
+							<h4>Jake Chmielewski</h4>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="team-member">
+							<img src="img/stuart.jpg" class="img-responsive img-circle"
+								alt="">
+							<h4>Stuart Filar</h4>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="team-member">
+							<img src="img/keith.png" class="img-responsive img-circle" alt="">
+							<h4>Keith Gibson</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</footer>
+
+
+
+	</div>
+	</div>
+	</div>
+
+	<!-- jQuery -->
+	<!--         <script src="js/login-modal.js"></script>
+ -->
+	<script src="js/jquery.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Script to Activate the Carousel -->
+	<script>
+		$('.carousel').carousel({
+			interval : 5000
+		//changes the speed
+		})
+
+		$.fn.serializeObject = function() {
+			var o = {};
+			var a = this.serializeArray();
+			$.each(a, function() {
+				if (o[this.name] !== undefined) {
+					if (!o[this.name].push) {
+						o[this.name] = [ o[this.name] ];
+					}
+					o[this.name].push(this.value || '');
+				} else {
+					o[this.name] = this.value || '';
+				}
+			});
+			return o;
+		};
+	
+		$('#login').click(function(){
+			
+			var data = JSON.stringify($('#loginform').serializeObject());
+		
+			$.ajax({
+				beforeSend: function(xhrObj){
+					xhrObj.setRequestHeader("Content-Type","application/json");
+					xhrObj.setRequestHeader("Accept","application/json");
+				
+				},
+		
+				type:"POST",
+				contentType:"application/json",
+				url:"/userlogin",
+				data:data,
+				dataType:'json',
+				success:function(json){
+			//		sessionStorage.setItem('user', JSON.stringify(json));
+			//		var user = sessionStorage.getItem('user')
+					window.location = "/updateUser";
+				//	console.log(data);
+				},
+				error: function (e, status) {
+
+					if (e.status == 500 || e.status == 409){
+						alert("Error! Username or password is invalid");
+						console.log(data);
+					}
+				}
+			})
+		});
+	</script>
+
+	<!--         <div  id="logodiv"><img src="img/TapThisBanner.png" style="margin: 0 auto; z-index: 3;"></div>
+ -->
+</body>
+</html>

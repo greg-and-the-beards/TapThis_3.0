@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+
+
+	<title></title>
+</head>
+<body>
+<br>
+
+
+
+<div id="wrapper" class= "row" style="padding: 50px; border: 2px solid black; " >
+
+</div>
+</div>
+					
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script>
+$(function(){
+var breweryLink;
+var beerName;
+var breweryName;
+	
+	// retrieves params passed from Search field on index page
+	function $_GET(param) {
+		var vars = {};
+		window.location.href.replace( location.hash, '' ).replace( 
+			/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+			function( m, key, value ) { // callback
+				vars[key] = value !== undefined ? value : '';
+			}
+		);
+		if ( param ) {
+			return vars[param] ? vars[param] : null;	
+		}
+		return vars;
+	}
+
+	// runs API call based on user input entered in Search field
+	$.get( "https://api.untappd.com/v4/search/beer?q="+ $_GET("beerInfo") +"&client_id=B2397B44662D900D4265BF03E035CE16D5CF4846&client_secret=2AE5A2667723D53FDDDCF2410EB5412F91FE433A", function( data ) {
+	  		$.each(data.response.beers.items, function( index, value ) {
+				
+			// sets vars to be used in div population below
+			 breweryLink = value.brewery.contact.url
+			 beerName = value.beer.beer_name
+			 breweryName = value.brewery.brewery_name
+			 var beerInfo = breweryName + " " + beerName
+			 				
+			 	// places searched Beer results in seperate divs			
+				$("#wrapper").append("<div style='border:3px solid black' class='col-md-4'>");
+				$("#wrapper").append("<ul>");
+				$("#wrapper").append('<li><a href="/beerDetails?beerInfo=' + beerInfo + ' "id="userSelection">' + value.beer.beer_name + "</a></li>");
+				$("#wrapper").append("<li>" + '<a href= "' + breweryLink +'">' + value.brewery.brewery_name +  '</a>' + "</li>");
+				$("#wrapper").append("<li>" + '<img src=' + value.beer.beer_label + '>' + "</li>");
+				$("#wrapper").append("<li>" + "<b>Abv : </b> " + value.beer.beer_abv + "</li>");
+				$("#wrapper").append("<li>" + "<b>Style : </b> " + value.beer.beer_style + "</li>");
+				$("#wrapper").append("</ul><br>");
+				$("#wrapper").append("</div>");
+
+			});	
+	}, "json" ).done(function(){
+	
+			 
+	//	console.log( " api call and list call complete")
+
+	});
+});
+</script>
+   
+    
+</body>
+</html>

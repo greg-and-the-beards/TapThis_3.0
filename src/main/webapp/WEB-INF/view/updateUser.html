@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>About - Business Casual - Start Bootstrap Theme</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="css/business-casual.css" rel="stylesheet">
+
+<!-- Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
+	rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+	<div class="brand">Business Casual</div>
+	<div class="address-bar">3481 Melrose Place | Beverly Hills, CA
+		90210 | 123.456.7890</div>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+				<a class="navbar-brand" href="index.html">Business Casual</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="blog.html">Blog</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="box">
+				<div class="col-lg-12 text-center">
+					<h2>Update Profile</h2>
+					<h2 th:text="${session.user.userName}"></h2>
+				 	<form class="form-horizontal" id="updateUserForm">
+						<input type="text" name="userId" id="userId" th:value="${session.user.userId}">
+						<div class="form-group">
+							<label for="userName" class="col-sm-2 control-label">Username</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="userName"
+									name="userName" required th:value="${session.user.userName}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="firstName" class="col-sm-2 control-label">First
+								Name</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="firstName"
+									name="firstName" required th:value="${session.user.firstName}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lastName" class="col-sm-2 control-label">Last
+								Name</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="lastName"
+									name="lastName" required th:value="${session.user.lastName}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="email" class="col-sm-2 control-label">email
+								Address</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control" id="email" name="email"
+									required th:value="${session.user.email}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="phone" class="col-sm-2 control-label">Phone</label>
+							<div class="col-sm-10">
+								<input type="tel" class="form-control" id="phone" name="phone" required th:value="${session.user.phone}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password" class="col-sm-2 control-label">Password</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="password"
+									name="password" aria-describedby="helpBlock" required th:value="${session.user.password}">
+								<span id="helpBlock" class="help-block">Password should
+									be at least 8 characters, 1 upppercase, 1 lowercase, 1 special
+									character, and one number</span>
+							</div>
+						</div>
+						<div class="form-group">
+                            <label for="password_verify" class="col-sm-2 control-label">Password Verify</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="password_verify" name="password_verify" aria-describedby="helpBlock" required th:value="${session.user.password}">
+                                <span id="helpBlock" class="help-block">Passwords must match</span>
+                            </div>
+                        </div>
+						 <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="radio">
+                                    <label><input type="radio" name="dateOfBirth" id="over21" value="1" checked required th:value="${session.user.dateOfBirth}">I Am Over 21</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="dateOfBirth" id="under21" value="0" required th:value="${session.user.dateOfBirth}">I Am Under 21</label>
+                                </div>
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button id="updateUser" type="submit" value="Submit"class="btn btn-default">Save Profile</button>
+                            </div>
+                        </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="box">
+				<div class="col-lg-12">
+					<hr>
+					<h2 class="intro-text text-center">
+						About <strong>business casual</strong>
+					</h2>
+					<hr>
+				</div>
+				<div class="col-md-6">
+					<img class="img-responsive img-border-left" src="img/slide-2.jpg"
+						alt="">
+				</div>
+				<div class="col-md-6">
+					<p>This is a great place to introduce your company or project
+						and describe what you do.</p>
+					<p>Lid est laborum dolo rumes fugats untras. Etharums ser
+						quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima
+						rerums unsers sadips amets.</p>
+					<p>Sed ut perspiciatis unde omnis iste natus error sit
+						voluptatem accusantium doloremque laudantium, totam rem aperiam,
+						eaque ipsa quae ab illo inventore veritatis et quasi architecto
+						beatae vitae dicta sunt explicabo.</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="box">
+				<div class="col-lg-12">
+					<hr>
+					<h2 class="intro-text text-center">
+						Our <strong>Team</strong>
+					</h2>
+					<hr>
+				</div>
+				<div class="col-sm-4 text-center">
+					<img class="img-responsive" src="http://placehold.it/750x450"
+						alt="">
+					<h3>
+						John Smith <small>Job Title</small>
+					</h3>
+				</div>
+				<div class="col-sm-4 text-center">
+					<img class="img-responsive" src="http://placehold.it/750x450"
+						alt="">
+					<h3>
+						John Smith <small>Job Title</small>
+					</h3>
+				</div>
+				<div class="col-sm-4 text-center">
+					<img class="img-responsive" src="http://placehold.it/750x450"
+						alt="">
+					<h3>
+						John Smith <small>Job Title</small>
+					</h3>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+	</div>
+	<!-- /.container -->
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<p>Copyright &copy; Your Website 2014</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>
+
+<footer>
+	<!-- <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </div> -->
+	<!-- Team Section -->
+	<section id="team" class="bg-light-gray">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h3 class="section-subheading text-muted">Meet Greg and the
+						Beards</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="team-member">
+						<img src="img/greg.png" class="img-responsive img-circle" alt="">
+						<h4>Greg Morris</h4>
+						<!-- <p class="text-muted">API and all the In Betweens</p> -->
+						<!--  <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul> -->
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="team-member">
+						<img src="img/jake.jpg" class="img-responsive img-circle" alt="">
+						<h4>Jake Chmielewski</h4>
+						<!-- <p class="text-muted">Front-End/Back-End</p> -->
+						<!--  <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul> -->
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="team-member">
+						<img src="img/stuart.jpg" class="img-responsive img-circle" alt="">
+						<h4>Stuart Filar</h4>
+						<!-- <p class="text-muted">Middleware Developer</p> -->
+						<!--    <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul> -->
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="team-member">
+						<img src="img/keith.png" class="img-responsive img-circle" alt="">
+						<h4>Keith Gibson</h4>
+						<!-- <p class="text-muted">Coffee Retreiver</p> -->
+						<!--  <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul> -->
+					</div>
+				</div>
+			</div>
+			<!-- <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p class="large text-muted">Thank you to this amazing team for helping make Mood Real a possibility!</p>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <a href="#page-top" class="page-scroll btn btn-xl">Top</a>
+                </div>
+            </div> -->
+		</div>
+	</section>
+</footer>
+</body>
+</html>
